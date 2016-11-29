@@ -1,0 +1,14 @@
+we have Index father of all Router .. who have these 3 childrens
+	
+	*App
+		+Layout (navbar)
+		
+	*Projects
+		+ Layout (navbar)
+		+ Widget (many widget components are called with differnt props (quite static)(most of 		the text props are getted from the Translation file) )
+	
+	* MapComp (called when user clicks on a readmore link from the widget component which is a dynamic link)
+		+Layout (navbar)
+		+LeafletMap
+	*About
+		+Layout (navbar)

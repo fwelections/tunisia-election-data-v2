@@ -1,0 +1,45 @@
+var data = require('./_women.json')
+
+var cityname = 'Tunis1'
+var sommeFemaleT,sommeMaleT,plus70,pres, _61_70, _51_60, _41_50, _31_40, _22_30, _18_21, leg = 0;
+var length = 0
+var obj ={}
+var tab = [];
+for (i in data){
+	if (data[i].circ == cityname){
+		sommeFemaleT+=Number(data[i].women);
+		sommeMaleT+=Number(data[i].men);
+		pres+=Number(data[i].pres);
+		leg+=Number(data[i].leg);
+		_61_70+=Number(data[i]._61_70);
+		_51_60+=Number(data[i]._51_60);
+		_41_50+=Number(data[i]._41_50);
+		_31_40+=Number(data[i]._31_40);
+		_22_30+=Number(data[i]._22_30);
+		_18_21+=Number(data[i]._18_21);
+
+		length++;
+	}else{
+		/*when the city name changes*/
+		sommeFemaleT = Math.round(sommeFemaleT* 100) / 100 ;
+
+		var x = sommeFemaleT/length ;
+		/*create the obj*/
+		obj.cityname = cityname;
+		obj.womenTurnout = x
+		tab.push(obj); //append the obj to the array
+		cityname = data[i].circ //init with the next cityname
+		sommeFemaleT = Number(data[i].women); //start a new percentege somme for the next city
+		length = 1; //start counting new length for the next city
+		obj = {} //prepare new obj for the next city
+	}
+}
+function init(sommeFemaleT,length,cityname,tab){
+	sommeFemaleT = Math.round(sommeFemaleT* 100) / 100 ;
+	var x = sommeFemaleT/length ;
+	obj.cityname = cityname;
+	obj.womenTurnout = x
+
+}
+
+//console.log(tab)
